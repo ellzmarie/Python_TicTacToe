@@ -4,9 +4,8 @@
 class PyPacPoe():
     def __init__(self):
         self.current_player = "X"
-
         self.no_of_turns = 0
-
+        self.is_winner = False
         self.current_board = {
             "a1": None,
             "a2": None,
@@ -57,22 +56,31 @@ class PyPacPoe():
     
     def check_for_win(self):
         if self.current_board['a1'] == self.current_board['b1'] and self.current_board['a1'] == self.current_board['c1']:
-            # we have a winner
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['a2'] == self.current_board['b2'] and self.current_board['a2'] == self.current_board['c2']:
-            # we have a winner
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['a3'] == self.current_board['b3'] and self.current_board['a3'] == self.current_board['c3']:
-            # we have a winner
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['a1'] == self.current_board['a2'] and self.current_board['a1'] == self.current_board['a3']:
-            # we have a winner  
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['b1'] == self.current_board['b2'] and self.current_board['b1'] == self.current_board['b3']:
-            # we have a winner      
+            self.is_winner = True
         elif self.current_board['c1'] == self.current_board['c2'] and self.current_board['c1'] == self.current_board['c3']:
-            # we have a winner
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['a1'] == self.current_board['b2'] and self.current_board['a1'] == self.current_board['c3']:
-            # we have a winner
+            self.is_winner = True
+            self.display_winner()
         elif self.current_board['a3'] == self.current_board['b2'] and self.current_board['a3'] == self.current_board['c1']:
-            # we have a winner
-            
+            self.is_winner = True
+            self.display_winner()
+        elif self.no_of_turns == 9 and not self.is_winnter: 
+            self.display_tie()
+        return       
                         
     def display_winner(self):
         print(f"Player {self.current_player} has won the game!")
@@ -80,6 +88,11 @@ class PyPacPoe():
     def display_tie(self):
         print("It was a tie game!")
 
+    def play(self)
+        self.display_welcome_message()
+        self.display_board()
+        self.display_turn()
+        self.get_player_move()
      
 new_game = PyPacPoe()
 # new_game.display_welcome_message()
