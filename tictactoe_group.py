@@ -48,12 +48,14 @@ class PyPacPoe():
     def get_player_move(self):
         player_move = input("Enter your move: ").lower()
         while not player_move in self.current_board:
+            self.display_board()
             player_move = input("That's not a valid move, try again: ").lower() # checks if this is a valid move
-
         while self.current_board[player_move] != None:
+            self.display_board()
             player_move = input("This space is taken, try again: ").lower # checks if this is available
         self.current_board[player_move] = self.current_player
-    
+        self.no_of_turns += 1
+
     def check_for_win(self):
         if self.current_board['a1'] == self.current_board['b1'] and self.current_board['a1'] == self.current_board['c1']:
             self.is_winner = True
@@ -88,11 +90,22 @@ class PyPacPoe():
     def display_tie(self):
         print("It was a tie game!")
 
-    def play(self)
+    def play(self):
         self.display_welcome_message()
         self.display_board()
         self.display_turn()
         self.get_player_move()
+        self.display_board()
+        self.check_for_win()
+        self.switch_player()
+
+    def init_game(self):
+        self.display_welcome_message()
+        self.play()
+
+
+
+        
      
 new_game = PyPacPoe()
 # new_game.display_welcome_message()
